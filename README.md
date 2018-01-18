@@ -14,7 +14,7 @@ The default implementation of **Rinvex Statistics** comes with zero configuratio
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rinvex/statistics.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/rinvex/statistics/)
 [![Code Climate](https://img.shields.io/codeclimate/github/rinvex/statistics.svg?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/rinvex/statistics)
 [![Travis](https://img.shields.io/travis/rinvex/statistics.svg?label=TravisCI&style=flat-square)](https://travis-ci.org/rinvex/statistics)
-[![StyleCI](https://styleci.io/repos/114939264/shield)](https://styleci.io/repos/114939264)
+[![StyleCI](https://styleci.io/repos/118045101/shield)](https://styleci.io/repos/118045101)
 [![License](https://img.shields.io/packagist/l/rinvex/statistics.svg?label=License&style=flat-square)](https://github.com/rinvex/statistics/blob/develop/LICENSE)
 
 
