@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rinvex\Statistics\Jobs;
 
 use Exception;
@@ -41,7 +43,7 @@ class CrunchStatistics implements ShouldQueue
                 $UAParser = Parser::create()->parse($agent->getUserAgent());
                 $kind = $agent->isDesktop() ? 'desktop' : ($agent->isTablet() ? 'tablet' : ($agent->isPhone() ? 'phone' : ($agent->isRobot() ? 'robot' : 'unknown')));
 
-                collect($laravelRequest->route()->getCompiled()->getTokens())->map(function ($item) use(&$tokens) {
+                collect($laravelRequest->route()->getCompiled()->getTokens())->map(function ($item) use (&$tokens) {
                     return ($item = collect($item)) && $item->contains('variable') ? $tokens[$item[3]] = $item[2] : null;
                 });
 
@@ -117,7 +119,8 @@ class CrunchStatistics implements ShouldQueue
 
                 app('rinvex.statistics.request')->create($requestDetails);
                 $item->delete();
-            } catch (Exception $exception) {}
+            } catch (Exception $exception) {
+            }
         });
     }
 }
