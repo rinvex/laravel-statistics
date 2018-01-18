@@ -1,0 +1,92 @@
+{
+    "name": "rinvex/statistics",
+    "description": "Rinvex Statistics is a lightweight, yet detailed package for tracking and recording user visits across your Laravel application. With only one simple query per request, important data is being stored, and later a cronjob crush numbers to extract meaningful stories from within the haystack.",
+    "keywords": [
+        "user",
+        "model",
+        "rinvex",
+        "laravel",
+        "eloquent",
+        "statistics",
+        "tracking",
+        "visitor",
+        "agents",
+        "client",
+        "views",
+        "device",
+        "logging",
+        "platform",
+        "browser"
+    ],
+    "license": "MIT",
+    "homepage": "https://rinvex.com",
+    "support": {
+        "email": "help@rinvex.com",
+        "issues": "https://github.com/rinvex/statistics/issues",
+        "source": "https://github.com/rinvex/statistics",
+        "docs": "https://github.com/rinvex/statistics/blob/master/README.md"
+    },
+    "authors": [
+        {
+            "name": "Rinvex LLC",
+            "homepage": "https://rinvex.com",
+            "email": "help@rinvex.com"
+        },
+        {
+            "name": "Abdelrahman Omran",
+            "homepage": "https://omranic.com",
+            "email": "me@omranic.com",
+            "role": "Project Lead"
+        },
+        {
+            "name": "The Generous Laravel Community",
+            "homepage": "https://github.com/rinvex/statistics/contributors"
+        }
+    ],
+    "require": {
+        "php": "^7.1.0",
+        "geoip2/geoip2": "^2.7.0",
+        "illuminate/console": "~5.5.0",
+        "illuminate/database": "~5.5.0",
+        "illuminate/support": "~5.5.0",
+        "rinvex/cacheable": "dev-develop",
+        "rinvex/support": "dev-develop",
+        "torann/geoip": "^1.0.0",
+        "watson/validating": "^3.0.0"
+    },
+    "require-dev": {
+        "codedungeon/phpunit-result-printer": "^0.4.0",
+        "illuminate/container": "~5.5.0",
+        "phpunit/phpunit": "^6.0.0"
+    },
+    "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "psr-4": {
+            "Rinvex\\Statistics\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rinvex\\Statistics\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "optimize-autoloader": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Rinvex\\Statistics\\Providers\\StatisticsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
