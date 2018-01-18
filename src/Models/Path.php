@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Rinvex\Statistics\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Rinvex\Cacheable\CacheableEloquent;
 use Rinvex\Support\Traits\ValidatingTrait;
 use Rinvex\Statistics\Contracts\PathContract;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Path extends Model implements PathContract
 {
