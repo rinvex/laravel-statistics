@@ -49,9 +49,11 @@
         "illuminate/console": "~5.5.0",
         "illuminate/database": "~5.5.0",
         "illuminate/support": "~5.5.0",
+        "jenssegers/agent": "^2.6",
         "rinvex/cacheable": "dev-develop",
         "rinvex/support": "dev-develop",
         "torann/geoip": "^1.0.0",
+        "ua-parser/uap-php": "^3.5",
         "watson/validating": "^3.0.0"
     },
     "require-dev": {
