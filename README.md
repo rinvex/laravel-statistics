@@ -46,7 +46,7 @@ Anyway, as a recommended performance tweak go ahead and do the following (option
 
 2. Disable the "Statistics Crunching Lottery" from config file.
 
-3. Follow the default Laravel documentation about [Scheduled Tasks](https://laravel.com/docs/master/scheduling), then schedule both `\Rinvex\Statistics\Jobs\CrunchStatistics` and `\Rinvex\Statistics\Jobs\CleanImpressionRequests` jobs at whatever intervals you see appropriate.
+3. Follow the default Laravel documentation about [Scheduled Tasks](https://laravel.com/docs/master/scheduling), then schedule both `\Rinvex\Statistics\Jobs\CrunchStatistics` and `\Rinvex\Statistics\Jobs\CleanStatisticsRequests` jobs at whatever intervals you see appropriate.
 
 4. Enjoy!
 
