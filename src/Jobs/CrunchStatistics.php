@@ -24,7 +24,7 @@ class CrunchStatistics implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         app('rinvex.statistics.datum')->each(function ($item) {
             try {

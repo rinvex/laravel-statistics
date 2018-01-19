@@ -34,7 +34,7 @@ class TrackStatistics
      *
      * @return void
      */
-    public function terminate($request, $response)
+    public function terminate($request, $response): void
     {
         app('rinvex.statistics.datum')->fill([
             'session_id' => $request->session()->getId(),

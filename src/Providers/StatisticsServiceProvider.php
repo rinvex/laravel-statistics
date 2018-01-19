@@ -105,7 +105,7 @@ class StatisticsServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function publishResources()
+    protected function publishResources(): void
     {
         $this->publishes([realpath(__DIR__.'/../../config/config.php') => config_path('rinvex.statistics.php')], 'rinvex-statistics-config');
         $this->publishes([realpath(__DIR__.'/../../database/migrations') => database_path('migrations')], 'rinvex-statistics-migrations');
@@ -116,7 +116,7 @@ class StatisticsServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerCommands()
+    protected function registerCommands(): void
     {
         // Register artisan commands
         foreach ($this->commands as $key => $value) {

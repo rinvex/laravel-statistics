@@ -13,7 +13,7 @@ class CreateStatisticsPathsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create(config('rinvex.statistics.tables.paths'), function (Blueprint $table) {
             // Columns
@@ -34,7 +34,7 @@ class CreateStatisticsPathsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists(config('rinvex.statistics.tables.paths'));
     }
