@@ -7,10 +7,9 @@ namespace Rinvex\Statistics\Models;
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Cacheable\CacheableEloquent;
 use Rinvex\Support\Traits\ValidatingTrait;
-use Rinvex\Statistics\Contracts\AgentContract;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Agent extends Model implements AgentContract
+class Agent extends Model
 {
     use ValidatingTrait;
     use CacheableEloquent;

@@ -7,10 +7,9 @@ namespace Rinvex\Statistics\Models;
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Cacheable\CacheableEloquent;
 use Rinvex\Support\Traits\ValidatingTrait;
-use Rinvex\Statistics\Contracts\GeoipContract;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Geoip extends Model implements GeoipContract
+class Geoip extends Model
 {
     use ValidatingTrait;
     use CacheableEloquent;

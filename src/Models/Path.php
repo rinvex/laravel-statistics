@@ -7,10 +7,9 @@ namespace Rinvex\Statistics\Models;
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Cacheable\CacheableEloquent;
 use Rinvex\Support\Traits\ValidatingTrait;
-use Rinvex\Statistics\Contracts\PathContract;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Path extends Model implements PathContract
+class Path extends Model
 {
     use ValidatingTrait;
     use CacheableEloquent;

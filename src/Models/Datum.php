@@ -7,9 +7,8 @@ namespace Rinvex\Statistics\Models;
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Cacheable\CacheableEloquent;
 use Rinvex\Support\Traits\ValidatingTrait;
-use Rinvex\Statistics\Contracts\DatumContract;
 
-class Datum extends Model implements DatumContract
+class Datum extends Model
 {
     use ValidatingTrait;
     use CacheableEloquent;

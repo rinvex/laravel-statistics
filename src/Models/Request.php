@@ -7,10 +7,9 @@ namespace Rinvex\Statistics\Models;
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Cacheable\CacheableEloquent;
 use Rinvex\Support\Traits\ValidatingTrait;
-use Rinvex\Statistics\Contracts\RequestContract;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Request extends Model implements RequestContract
+class Request extends Model
 {
     use ValidatingTrait;
     use CacheableEloquent;
