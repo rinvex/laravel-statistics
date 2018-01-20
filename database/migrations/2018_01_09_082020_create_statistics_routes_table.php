@@ -42,7 +42,7 @@ class CreateStatisticsRoutesTable extends Migration
      *
      * @return string
      */
-    protected function jsonable()
+    protected function jsonable(): string
     {
         return DB::connection()->getPdo()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'mysql'
                && version_compare(DB::connection()->getPdo()->getAttribute(PDO::ATTR_SERVER_VERSION), '5.7.8', 'ge')

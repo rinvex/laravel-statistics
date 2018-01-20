@@ -63,7 +63,7 @@ class TrackStatistics
      *
      * @return bool
      */
-    protected function configHitsLottery()
+    protected function configHitsLottery(): bool
     {
         $config = config('rinvex.statistics.lottery');
 
