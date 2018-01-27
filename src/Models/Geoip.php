@@ -66,8 +66,8 @@ class Geoip extends Model
      */
     protected $rules = [
         'client_ip' => 'required|string',
-        'latitude' => 'required|string',
-        'longitude' => 'required|string',
+        'latitude' => 'required|integer',
+        'longitude' => 'required|integer',
         'country_code' => 'required|string',
         'client_ips' => 'nullable|array',
         'is_from_trusted_proxy' => 'sometimes|boolean',
