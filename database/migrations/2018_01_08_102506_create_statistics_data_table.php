@@ -15,7 +15,10 @@ class CreateStatisticsDataTable extends Migration
      */
     public function up(): void
     {
-        Schema::create(config('rinvex.statistics.tables.data'), function (Blueprint $table) {
+        // Get users model
+        $userModel = config('auth.providers.'.config('auth.guards.'.config('auth.defaults.guard').'.provider').'.model');
+
+        Schema::create(config('rinvex.statistics.tables.data'), function (Blueprint $table) use ($userModel) {
             // Columns
             $table->increments('id');
             $table->string('session_id');
@@ -26,6 +29,10 @@ class CreateStatisticsDataTable extends Migration
             $table->{$this->jsonable()}('server');
             $table->{$this->jsonable()}('input')->nullable();
             $table->timestamp('created_at')->nullable();
+
+            // Indexes
+            $table->foreign('user_id')->references('id')->on((new $userModel())->getTable())
+                  ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
