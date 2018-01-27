@@ -21,6 +21,7 @@ class Path extends Model
         'host',
         'locale',
         'path',
+        'method',
         'parameters',
     ];
 
@@ -31,6 +32,7 @@ class Path extends Model
         'host' => 'string',
         'locale' => 'string',
         'path' => 'string',
+        'method' => 'string',
         'parameters' => 'json',
     ];
 
@@ -56,6 +58,7 @@ class Path extends Model
         'host' => 'required|string',
         'locale' => 'required|string',
         'path' => 'required|string',
+        'method' => 'required|string',
         'parameters' => 'nullable|array',
     ];
 

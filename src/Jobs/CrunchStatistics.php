@@ -77,6 +77,7 @@ class CrunchStatistics implements ShouldQueue
                 $path = app('rinvex.statistics.path')->firstOrCreate([
                     'host' => $laravelRequest->getHost(),
                     'path' => $laravelRequest->decodedPath(),
+                    'method' => $laravelRequest->getMethod(),
                     'accessarea' => $laravelRequest->get('accessarea'),
                     'locale' => $laravelRequest->route('locale') ?? app()->getLocale(),
                 ], ['parameters' => $laravelRoute->parameters() ?: null]);
@@ -105,7 +106,6 @@ class CrunchStatistics implements ShouldQueue
                     'user_id' => $item['user_id'],
                     'session_id' => $item['session_id'],
                     'status_code' => $item['status_code'],
-                    'method' => $laravelRequest->getMethod(),
                     'referer' => $laravelRequest->header('referer') ?: $laravelRequest->get('utm_source'),
                     'protocol_version' => $laravelRequest->getProtocolVersion(),
                     'language' => $laravelRequest->getPreferredLanguage(),

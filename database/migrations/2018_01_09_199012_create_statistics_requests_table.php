@@ -29,7 +29,6 @@ class CreateStatisticsRequestsTable extends Migration
             $table->integer('geoip_id')->unsigned();
             $table->integer('user_id')->unsigned()->nullable();
             $table->string('session_id');
-            $table->string('method');
             $table->integer('status_code');
             $table->string('protocol_version')->nullable();
             $table->text('referer')->nullable();

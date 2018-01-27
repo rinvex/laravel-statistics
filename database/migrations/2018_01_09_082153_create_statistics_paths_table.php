@@ -21,11 +21,12 @@ class CreateStatisticsPathsTable extends Migration
             $table->string('host');
             $table->string('locale');
             $table->string('path');
+            $table->string('method');
             $table->{$this->jsonable()}('parameters')->nullable();
             $table->integer('count')->unsigned()->default(0);
 
             // Indexes
-            $table->unique(['host', 'path']);
+            $table->unique(['host', 'path', 'method']);
         });
     }
 
