@@ -29,6 +29,9 @@ class CreateStatisticsGeoipsTable extends Migration
             $table->string('timezone')->nullable();
             $table->string('city')->nullable();
             $table->integer('count')->unsigned()->default(0);
+
+            // Indexes
+            $table->unique(['client_ip', 'latitude', 'longitude']);
         });
     }
 
