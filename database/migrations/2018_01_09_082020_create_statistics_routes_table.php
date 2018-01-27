@@ -24,6 +24,9 @@ class CreateStatisticsRoutesTable extends Migration
             $table->string('middleware')->nullable();
             $table->{$this->jsonable()}('parameters')->nullable();
             $table->integer('count')->unsigned()->default(0);
+
+            // Indexes
+            $table->unique('name');
         });
     }
 
