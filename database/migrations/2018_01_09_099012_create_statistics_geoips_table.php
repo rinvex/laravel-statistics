@@ -28,6 +28,7 @@ class CreateStatisticsGeoipsTable extends Migration
             $table->string('postal_code')->nullable();
             $table->string('timezone')->nullable();
             $table->string('city')->nullable();
+            $table->integer('count')->unsigned()->default(0);
         });
     }
 
