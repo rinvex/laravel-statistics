@@ -19,8 +19,8 @@ class CreateStatisticsGeoipsTable extends Migration
             // Columns
             $table->increments('id');
             $table->string('client_ip');
-            $table->integer('latitude');
-            $table->integer('longitude');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->char('country_code', 2);
             $table->{$this->jsonable()}('client_ips')->nullable();
             $table->boolean('is_from_trusted_proxy')->default(0);

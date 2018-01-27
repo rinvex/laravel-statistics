@@ -35,8 +35,8 @@ class Geoip extends Model
      */
     protected $casts = [
         'client_ip' => 'string',
-        'latitude' => 'integer',
-        'longitude' => 'integer',
+        'latitude' => 'string',
+        'longitude' => 'string',
         'country_code' => 'string',
         'client_ips' => 'json',
         'is_from_trusted_proxy' => 'boolean',
@@ -66,8 +66,8 @@ class Geoip extends Model
      */
     protected $rules = [
         'client_ip' => 'required|string',
-        'latitude' => 'required|integer',
-        'longitude' => 'required|integer',
+        'latitude' => 'required|string',
+        'longitude' => 'required|string',
         'country_code' => 'required|string',
         'client_ips' => 'nullable|array',
         'is_from_trusted_proxy' => 'sometimes|boolean',
