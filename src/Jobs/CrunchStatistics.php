@@ -77,7 +77,7 @@ class CrunchStatistics implements ShouldQueue
                 $path = app('rinvex.statistics.path')->firstOrCreate([
                     'host' => $laravelRequest->getHost(),
                     'path' => $laravelRequest->decodedPath(),
-                    'locale' => $laravelRequest->route('locale'),
+                    'locale' => $laravelRequest->route('locale') ?? app()->getLocale(),
                 ], ['parameters' => $laravelRoute->parameters() ?: null]);
 
                 $geoip = app('rinvex.statistics.geoip')->firstOrCreate([
