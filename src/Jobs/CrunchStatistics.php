@@ -49,9 +49,9 @@ class CrunchStatistics implements ShouldQueue
 
                 $route = app('rinvex.statistics.route')->firstOrCreate([
                     'name' => $laravelRoute->getName(),
-                    'action' => $laravelRoute->getActionName(),
-                    'path' => $laravelRoute->uri(),
                 ], [
+                    'path' => $laravelRoute->uri(),
+                    'action' => $laravelRoute->getActionName(),
                     'middleware' => $laravelRoute->gatherMiddleware() ?: null,
                     'parameters' => $tokens ?: null,
                 ]);
@@ -78,17 +78,19 @@ class CrunchStatistics implements ShouldQueue
                     'host' => $laravelRequest->getHost(),
                     'path' => $laravelRequest->decodedPath(),
                     'method' => $laravelRequest->getMethod(),
-                    'accessarea' => $laravelRequest->get('accessarea'),
                     'locale' => $laravelRequest->route('locale') ?? app()->getLocale(),
-                ], ['parameters' => $laravelRoute->parameters() ?: null]);
+                ], [
+                    'accessarea' => $laravelRequest->get('accessarea'),
+                    'parameters' => $laravelRoute->parameters() ?: null,
+                ]);
 
                 $geoip = app('rinvex.statistics.geoip')->firstOrCreate([
                     'client_ip' => $ip = $laravelRequest->getClientIp(),
                     'latitude' => geoip($ip)->getAttribute('lat'),
                     'longitude' => geoip($ip)->getAttribute('lon'),
-                    'country_code' => mb_strtoupper(geoip($ip)->getAttribute('iso_code')),
                 ], [
                     'client_ips' => $laravelRequest->getClientIps() ?: null,
+                    'country_code' => mb_strtoupper(geoip($ip)->getAttribute('iso_code')),
                     'is_from_trusted_proxy' => $laravelRequest->isFromTrustedProxy(),
                     'division_code' => geoip($ip)->getAttribute('state'),
                     'postal_code' => geoip($ip)->getAttribute('postal_code'),
