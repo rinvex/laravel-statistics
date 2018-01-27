@@ -26,7 +26,7 @@ class CreateStatisticsPathsTable extends Migration
             $table->integer('count')->unsigned()->default(0);
 
             // Indexes
-            $table->unique(['host', 'path', 'method']);
+            $table->unique(['host', 'path', 'method', 'locale']);
         });
     }
 
