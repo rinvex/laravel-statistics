@@ -208,6 +208,8 @@ class Request extends Model
      */
     public function user(): belongsTo
     {
-        return $this->belongsTo(config('auth.providers.users.model'), 'user_id', 'id');
+        $userModel = config('auth.providers.'.config('auth.guards.'.config('auth.defaults.guard').'.provider').'.model');
+
+        return $this->belongsTo($userModel, 'user_id', 'id');
     }
 }
