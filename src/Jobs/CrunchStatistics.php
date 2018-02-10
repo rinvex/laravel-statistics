@@ -106,6 +106,7 @@ class CrunchStatistics implements ShouldQueue
                     'path_id' => $path->getKey(),
                     'geoip_id' => $geoip->getKey(),
                     'user_id' => $item['user_id'],
+                    'user_type' => $item['user_type'],
                     'session_id' => $item['session_id'],
                     'status_code' => $item['status_code'],
                     'referer' => $laravelRequest->header('referer') ?: $laravelRequest->get('utm_source'),

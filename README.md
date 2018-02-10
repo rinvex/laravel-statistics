@@ -143,11 +143,11 @@ This means there's 57 visits to the project from IP address `127.0.0.0` with the
 
 #### Requests
 
-| id | route_id | agent_id | device_id | platform_id | path_id | geoip_id | user_id | session_id | method | status_code | protocol_version | referer | language | is_no_cache | wants_json | is_secure | is_json | is_ajax | is_pjax | created_at |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | 123 | 123 | 123 | 123 | 123 | 123 | 123 | MU22QcrzDIdj0gY27yJmUPJHNFy9Hlqvkel1KBZ1 | GET|POST | 200 | HTTP/1.1 | https://google.com | en_US | 0 | 0 | 1 | 0 | 0 | 0 | 2018-01-10 09:42:39 |
+| id | route_id | agent_id | device_id | platform_id | path_id | geoip_id | user_id | user_type | session_id | method | status_code | protocol_version | referer | language | is_no_cache | wants_json | is_secure | is_json | is_ajax | is_pjax | created_at |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 123 | 123 | 123 | 123 | 123 | 123 | 123 | user | MU22QcrzDIdj0gY27yJmUPJHNFy9Hlqvkel1KBZ1 | GET|POST | 200 | HTTP/1.1 | https://google.com | en_US | 0 | 0 | 1 | 0 | 0 | 0 | 2018-01-10 09:42:39 |
 
-This is the most comprehensive table that records every single request made to the project, with access details as seen in the sample above. Through both `session_id` and `user_id` you can track guests (logged out) and users (logged in) and extract unique visits/visitors with the criteria you see appropriate for you.
+This is the most comprehensive table that records every single request made to the project, with access details as seen in the sample above. Through `session_id`, `user_id` and `user_type` you can track guests (logged out) and users (logged in) and extract unique visits/visitors with the criteria you see appropriate for you.
 
 > **Notes:**
 > - As a final note, this package is a data hord, and it doesn't actually do much of the math that could be done on such a valuable gathered data, so it's up to your imagination to utilize it however you see fits your goals. Implementation details is up to you.

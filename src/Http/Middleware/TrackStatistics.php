@@ -36,9 +36,12 @@ class TrackStatistics
      */
     public function terminate($request, $response): void
     {
+        $currentUser = $request->user();
+
         app('rinvex.statistics.datum')->fill([
             'session_id' => $request->session()->getId(),
-            'user_id' => ($user = $request->user()) ? $user->getKey() : null,
+            'user_id' => $currentUser->getKey() ?? null,
+            'user_type' => $currentUser->getMorphClass() ?? null,
             'status_code' => $response->getStatusCode(),
             'uri' => $request->getUri(),
             'method' => $request->getMethod(),

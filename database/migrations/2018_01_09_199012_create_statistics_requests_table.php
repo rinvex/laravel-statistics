@@ -15,10 +15,7 @@ class CreateStatisticsRequestsTable extends Migration
      */
     public function up(): void
     {
-        // Get users model
-        $userModel = config('auth.providers.'.config('auth.guards.'.config('auth.defaults.guard').'.provider').'.model');
-
-        Schema::create(config('rinvex.statistics.tables.requests'), function (Blueprint $table) use ($userModel) {
+        Schema::create(config('rinvex.statistics.tables.requests'), function (Blueprint $table) {
             // Columns
             $table->increments('id');
             $table->integer('route_id')->unsigned();
@@ -27,7 +24,7 @@ class CreateStatisticsRequestsTable extends Migration
             $table->integer('platform_id')->unsigned();
             $table->integer('path_id')->unsigned();
             $table->integer('geoip_id')->unsigned();
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->nullableMorphs('user');
             $table->string('session_id');
             $table->integer('status_code');
             $table->string('protocol_version')->nullable();
@@ -53,8 +50,6 @@ class CreateStatisticsRequestsTable extends Migration
             $table->foreign('path_id')->references('id')->on(config('rinvex.statistics.tables.paths'))
                   ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('geoip_id')->references('id')->on(config('rinvex.statistics.tables.geoips'))
-                  ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('user_id')->references('id')->on((new $userModel())->getTable())
                   ->onDelete('cascade')->onUpdate('cascade');
         });
     }

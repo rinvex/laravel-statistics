@@ -6,7 +6,9 @@ namespace Rinvex\Statistics\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Cacheable\CacheableEloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Rinvex\Support\Traits\ValidatingTrait;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Request extends Model
@@ -25,6 +27,7 @@ class Request extends Model
         'path_id',
         'geoip_id',
         'user_id',
+        'user_type',
         'session_id',
         'status_code',
         'protocol_version',
@@ -50,6 +53,7 @@ class Request extends Model
         'path_id' => 'integer',
         'geoip_id' => 'integer',
         'user_id' => 'integer',
+        'user_type' => 'string',
         'session_id' => 'string',
         'status_code' => 'integer',
         'protocol_version' => 'string',
@@ -90,6 +94,7 @@ class Request extends Model
         'path_id' => 'required|integer',
         'geoip_id' => 'required|integer',
         'user_id' => 'nullable|integer',
+        'user_type' => 'nullable|string',
         'session_id' => 'required|string',
         'status_code' => 'required|integer',
         'protocol_version' => 'nullable|string',
@@ -202,14 +207,25 @@ class Request extends Model
     }
 
     /**
-     * Request may belongs to a user.
+     * Get the owning user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function user(): belongsTo
+    public function user(): MorphTo
     {
-        $userModel = config('auth.providers.'.config('auth.guards.'.config('auth.defaults.guard').'.provider').'.model');
+        return $this->morphTo();
+    }
 
-        return $this->belongsTo($userModel, 'user_id', 'id');
+    /**
+     * Get bookings of the given user.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param \Illuminate\Database\Eloquent\Model   $user
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfUser(Builder $builder, Model $user): Builder
+    {
+        return $builder->where('user_type', $user->getMorphClass())->where('user_id', $user->getKey());
     }
 }
