@@ -57,7 +57,7 @@
         "jenssegers/agent": "^2.6.0",
         "rinvex/cacheable": "dev-develop",
         "rinvex/support": "dev-develop",
-        "symfony/http-foundation": "^3.4.0",
+        "symfony/http-foundation": "^4.0.0",
         "torann/geoip": "^1.0.0",
         "ua-parser/uap-php": "^3.5.0",
         "watson/validating": "^3.0.0"
