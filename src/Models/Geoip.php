@@ -7,10 +7,9 @@ namespace Rinvex\Statistics\Models;
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Cacheable\CacheableEloquent;
 use Rinvex\Support\Traits\ValidatingTrait;
-use Rinvex\Statistics\Contracts\GeoipContract;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Geoip extends Model implements GeoipContract
+class Geoip extends Model
 {
     use ValidatingTrait;
     use CacheableEloquent;
@@ -36,8 +35,8 @@ class Geoip extends Model implements GeoipContract
      */
     protected $casts = [
         'client_ip' => 'string',
-        'latitude' => 'integer',
-        'longitude' => 'integer',
+        'latitude' => 'string',
+        'longitude' => 'string',
         'country_code' => 'string',
         'client_ips' => 'json',
         'is_from_trusted_proxy' => 'boolean',

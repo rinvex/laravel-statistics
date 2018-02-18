@@ -6,11 +6,12 @@ namespace Rinvex\Statistics\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Cacheable\CacheableEloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Rinvex\Support\Traits\ValidatingTrait;
-use Rinvex\Statistics\Contracts\RequestContract;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Request extends Model implements RequestContract
+class Request extends Model
 {
     use ValidatingTrait;
     use CacheableEloquent;
@@ -26,9 +27,9 @@ class Request extends Model implements RequestContract
         'path_id',
         'geoip_id',
         'user_id',
+        'user_type',
         'session_id',
         'status_code',
-        'method',
         'protocol_version',
         'referer',
         'language',
@@ -52,9 +53,9 @@ class Request extends Model implements RequestContract
         'path_id' => 'integer',
         'geoip_id' => 'integer',
         'user_id' => 'integer',
+        'user_type' => 'string',
         'session_id' => 'string',
         'status_code' => 'integer',
-        'method' => 'string',
         'protocol_version' => 'string',
         'referer' => 'string',
         'language' => 'string',
@@ -93,9 +94,9 @@ class Request extends Model implements RequestContract
         'path_id' => 'required|integer',
         'geoip_id' => 'required|integer',
         'user_id' => 'nullable|integer',
+        'user_type' => 'nullable|string',
         'session_id' => 'required|string',
         'status_code' => 'required|integer',
-        'method' => 'required|string',
         'protocol_version' => 'nullable|string',
         'referer' => 'nullable|string',
         'language' => 'required|string',
@@ -206,12 +207,25 @@ class Request extends Model implements RequestContract
     }
 
     /**
-     * Request may belongs to a user.
+     * Get the owning user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function user(): belongsTo
+    public function user(): MorphTo
     {
-        return $this->belongsTo(config('auth.providers.users.model'), 'user_id', 'id');
+        return $this->morphTo();
+    }
+
+    /**
+     * Get bookings of the given user.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param \Illuminate\Database\Eloquent\Model   $user
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfUser(Builder $builder, Model $user): Builder
+    {
+        return $builder->where('user_type', $user->getMorphClass())->where('user_id', $user->getKey());
     }
 }

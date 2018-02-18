@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rinvex\Statistics\Jobs;
 
 use Exception;
@@ -22,7 +24,7 @@ class CrunchStatistics implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         app('rinvex.statistics.datum')->each(function ($item) {
             try {
@@ -41,15 +43,15 @@ class CrunchStatistics implements ShouldQueue
                 $UAParser = Parser::create()->parse($agent->getUserAgent());
                 $kind = $agent->isDesktop() ? 'desktop' : ($agent->isTablet() ? 'tablet' : ($agent->isPhone() ? 'phone' : ($agent->isRobot() ? 'robot' : 'unknown')));
 
-                collect($laravelRequest->route()->getCompiled()->getTokens())->map(function ($item) use(&$tokens) {
+                collect($laravelRequest->route()->getCompiled()->getTokens())->map(function ($item) use (&$tokens) {
                     return ($item = collect($item)) && $item->contains('variable') ? $tokens[$item[3]] = $item[2] : null;
                 });
 
                 $route = app('rinvex.statistics.route')->firstOrCreate([
                     'name' => $laravelRoute->getName(),
-                    'action' => $laravelRoute->getActionName(),
-                    'path' => $laravelRoute->uri(),
                 ], [
+                    'path' => $laravelRoute->uri(),
+                    'action' => $laravelRoute->getActionName(),
                     'middleware' => $laravelRoute->gatherMiddleware() ?: null,
                     'parameters' => $tokens ?: null,
                 ]);
@@ -75,16 +77,20 @@ class CrunchStatistics implements ShouldQueue
                 $path = app('rinvex.statistics.path')->firstOrCreate([
                     'host' => $laravelRequest->getHost(),
                     'path' => $laravelRequest->decodedPath(),
-                    'locale' => $laravelRequest->route('locale'),
-                ], ['parameters' => $laravelRoute->parameters() ?: null]);
+                    'method' => $laravelRequest->getMethod(),
+                    'locale' => $laravelRequest->route('locale') ?? app()->getLocale(),
+                ], [
+                    'accessarea' => $laravelRequest->get('accessarea'),
+                    'parameters' => $laravelRoute->parameters() ?: null,
+                ]);
 
                 $geoip = app('rinvex.statistics.geoip')->firstOrCreate([
                     'client_ip' => $ip = $laravelRequest->getClientIp(),
                     'latitude' => geoip($ip)->getAttribute('lat'),
                     'longitude' => geoip($ip)->getAttribute('lon'),
-                    'country_code' => mb_strtoupper(geoip($ip)->getAttribute('iso_code')),
                 ], [
                     'client_ips' => $laravelRequest->getClientIps() ?: null,
+                    'country_code' => mb_strtoupper(geoip($ip)->getAttribute('iso_code')),
                     'is_from_trusted_proxy' => $laravelRequest->isFromTrustedProxy(),
                     'division_code' => geoip($ip)->getAttribute('state'),
                     'postal_code' => geoip($ip)->getAttribute('postal_code'),
@@ -100,9 +106,9 @@ class CrunchStatistics implements ShouldQueue
                     'path_id' => $path->getKey(),
                     'geoip_id' => $geoip->getKey(),
                     'user_id' => $item['user_id'],
+                    'user_type' => $item['user_type'],
                     'session_id' => $item['session_id'],
                     'status_code' => $item['status_code'],
-                    'method' => $laravelRequest->getMethod(),
                     'referer' => $laravelRequest->header('referer') ?: $laravelRequest->get('utm_source'),
                     'protocol_version' => $laravelRequest->getProtocolVersion(),
                     'language' => $laravelRequest->getPreferredLanguage(),
@@ -117,7 +123,8 @@ class CrunchStatistics implements ShouldQueue
 
                 app('rinvex.statistics.request')->create($requestDetails);
                 $item->delete();
-            } catch (Exception $exception) {}
+            } catch (Exception $exception) {
+            }
         });
     }
 }

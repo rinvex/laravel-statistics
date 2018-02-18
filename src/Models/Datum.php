@@ -6,10 +6,11 @@ namespace Rinvex\Statistics\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Cacheable\CacheableEloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Rinvex\Support\Traits\ValidatingTrait;
-use Rinvex\Statistics\Contracts\DatumContract;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class Datum extends Model implements DatumContract
+class Datum extends Model
 {
     use ValidatingTrait;
     use CacheableEloquent;
@@ -20,6 +21,7 @@ class Datum extends Model implements DatumContract
     protected $fillable = [
         'session_id',
         'user_id',
+        'user_type',
         'status_code',
         'uri',
         'method',
@@ -34,6 +36,7 @@ class Datum extends Model implements DatumContract
     protected $casts = [
         'session_id' => 'string',
         'user_id' => 'integer',
+        'user_type' => 'string',
         'status_code' => 'integer',
         'uri' => 'string',
         'method' => 'string',
@@ -63,6 +66,7 @@ class Datum extends Model implements DatumContract
     protected $rules = [
         'session_id' => 'required|string',
         'user_id' => 'nullable|integer',
+        'user_type' => 'nullable|string',
         'status_code' => 'required|integer',
         'uri' => 'required|string',
         'method' => 'required|string',
@@ -89,5 +93,28 @@ class Datum extends Model implements DatumContract
         parent::__construct($attributes);
 
         $this->setTable(config('rinvex.statistics.tables.data'));
+    }
+
+    /**
+     * Get the owning user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function user(): MorphTo
+    {
+        return $this->morphTo();
+    }
+
+    /**
+     * Get bookings of the given user.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param \Illuminate\Database\Eloquent\Model   $user
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfUser(Builder $builder, Model $user): Builder
+    {
+        return $builder->where('user_type', $user->getMorphClass())->where('user_id', $user->getKey());
     }
 }

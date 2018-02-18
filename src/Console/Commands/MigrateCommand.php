@@ -13,7 +13,7 @@ class MigrateCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'rinvex:migrate:statistics';
+    protected $signature = 'rinvex:migrate:statistics {--force : Force the operation to run when in production.}';
 
     /**
      * The console command description.
@@ -27,9 +27,9 @@ class MigrateCommand extends Command
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $this->warn($this->description);
-        $this->call('migrate', ['--step' => true, '--path' => 'vendor/rinvex/statistics/database/migrations']);
+        $this->call('migrate', ['--step' => true, '--path' => 'vendor/rinvex/statistics/database/migrations', '--force' => $this->option('force')]);
     }
 }

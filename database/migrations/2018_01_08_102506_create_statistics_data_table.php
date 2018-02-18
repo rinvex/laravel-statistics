@@ -13,13 +13,13 @@ class CreateStatisticsDataTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create(config('rinvex.statistics.tables.data'), function (Blueprint $table) {
             // Columns
             $table->increments('id');
             $table->string('session_id');
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->nullableMorphs('user');
             $table->integer('status_code');
             $table->text('uri');
             $table->string('method');
@@ -34,7 +34,7 @@ class CreateStatisticsDataTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists(config('rinvex.statistics.tables.data'));
     }
@@ -44,7 +44,7 @@ class CreateStatisticsDataTable extends Migration
      *
      * @return string
      */
-    protected function jsonable()
+    protected function jsonable(): string
     {
         return DB::connection()->getPdo()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'mysql'
                && version_compare(DB::connection()->getPdo()->getAttribute(PDO::ATTR_SERVER_VERSION), '5.7.8', 'ge')

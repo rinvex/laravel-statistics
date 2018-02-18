@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace Rinvex\Statistics\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Rinvex\Cacheable\CacheableEloquent;
 use Rinvex\Support\Traits\ValidatingTrait;
-use Rinvex\Statistics\Contracts\PlatformContract;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Platform extends Model implements PlatformContract
+class Platform extends Model
 {
     use ValidatingTrait;
     use CacheableEloquent;

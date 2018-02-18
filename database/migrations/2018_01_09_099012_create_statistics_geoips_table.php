@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -11,14 +13,14 @@ class CreateStatisticsGeoipsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create(config('rinvex.statistics.tables.geoips'), function (Blueprint $table) {
             // Columns
             $table->increments('id');
             $table->string('client_ip');
-            $table->integer('latitude');
-            $table->integer('longitude');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->char('country_code', 2);
             $table->{$this->jsonable()}('client_ips')->nullable();
             $table->boolean('is_from_trusted_proxy')->default(0);
@@ -26,6 +28,10 @@ class CreateStatisticsGeoipsTable extends Migration
             $table->string('postal_code')->nullable();
             $table->string('timezone')->nullable();
             $table->string('city')->nullable();
+            $table->integer('count')->unsigned()->default(0);
+
+            // Indexes
+            $table->unique(['client_ip', 'latitude', 'longitude']);
         });
     }
 
@@ -34,7 +40,7 @@ class CreateStatisticsGeoipsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists(config('rinvex.statistics.tables.geoips'));
     }
@@ -44,7 +50,7 @@ class CreateStatisticsGeoipsTable extends Migration
      *
      * @return string
      */
-    protected function jsonable()
+    protected function jsonable(): string
     {
         return DB::connection()->getPdo()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'mysql'
                && version_compare(DB::connection()->getPdo()->getAttribute(PDO::ATTR_SERVER_VERSION), '5.7.8', 'ge')

@@ -13,12 +13,9 @@ class CreateStatisticsRequestsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        // Get users model
-        $userModel = config('auth.providers.'.config('auth.guards.'.config('auth.defaults.guard').'.provider').'.model');
-
-        Schema::create(config('rinvex.statistics.tables.requests'), function (Blueprint $table) use ($userModel) {
+        Schema::create(config('rinvex.statistics.tables.requests'), function (Blueprint $table) {
             // Columns
             $table->increments('id');
             $table->integer('route_id')->unsigned();
@@ -27,9 +24,8 @@ class CreateStatisticsRequestsTable extends Migration
             $table->integer('platform_id')->unsigned();
             $table->integer('path_id')->unsigned();
             $table->integer('geoip_id')->unsigned();
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->nullableMorphs('user');
             $table->string('session_id');
-            $table->string('method');
             $table->integer('status_code');
             $table->string('protocol_version')->nullable();
             $table->text('referer')->nullable();
@@ -55,8 +51,6 @@ class CreateStatisticsRequestsTable extends Migration
                   ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('geoip_id')->references('id')->on(config('rinvex.statistics.tables.geoips'))
                   ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('user_id')->references('id')->on((new $userModel())->getTable())
-                  ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -65,7 +59,7 @@ class CreateStatisticsRequestsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists(config('rinvex.statistics.tables.requests'));
     }
@@ -75,7 +69,7 @@ class CreateStatisticsRequestsTable extends Migration
      *
      * @return string
      */
-    protected function jsonable()
+    protected function jsonable(): string
     {
         return DB::connection()->getPdo()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'mysql'
                && version_compare(DB::connection()->getPdo()->getAttribute(PDO::ATTR_SERVER_VERSION), '5.7.8', 'ge')

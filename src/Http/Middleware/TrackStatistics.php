@@ -34,11 +34,14 @@ class TrackStatistics
      *
      * @return void
      */
-    public function terminate($request, $response)
+    public function terminate($request, $response): void
     {
+        $currentUser = $request->user();
+
         app('rinvex.statistics.datum')->fill([
             'session_id' => $request->session()->getId(),
-            'user_id' => ($user = $request->user()) ? $user->getKey() : null,
+            'user_id' => optional($currentUser)->getKey(),
+            'user_type' => optional($currentUser)->getMorphClass(),
             'status_code' => $response->getStatusCode(),
             'uri' => $request->getUri(),
             'method' => $request->getMethod(),
@@ -63,7 +66,7 @@ class TrackStatistics
      *
      * @return bool
      */
-    protected function configHitsLottery()
+    protected function configHitsLottery(): bool
     {
         $config = config('rinvex.statistics.lottery');
 

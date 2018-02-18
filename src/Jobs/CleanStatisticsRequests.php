@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rinvex\Statistics\Jobs;
 
 use Illuminate\Bus\Queueable;
@@ -17,7 +19,7 @@ class CleanStatisticsRequests implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         ! config('rinvex.statistics.lifetime') || app('rinvex.statistics.request')->where('created_at', '<=', now()->subDays(config('rinvex.statistics.lifetime')))->delete();
     }

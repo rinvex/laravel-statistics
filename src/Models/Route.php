@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace Rinvex\Statistics\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Rinvex\Cacheable\CacheableEloquent;
 use Rinvex\Support\Traits\ValidatingTrait;
-use Rinvex\Statistics\Contracts\RouteContract;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Route extends Model implements RouteContract
+class Route extends Model
 {
     use ValidatingTrait;
     use CacheableEloquent;
