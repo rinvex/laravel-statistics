@@ -20,4 +20,4 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2018-02-18
 - Tag first release
 
-[v0.0.2]: https://github.com/rinvex/subscriptions/compare/v0.0.1...v0.0.2
+[v0.0.2]: https://github.com/rinvex/statistics/compare/v0.0.1...v0.0.2
