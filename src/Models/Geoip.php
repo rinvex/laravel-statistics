@@ -68,12 +68,12 @@ class Geoip extends Model
         'client_ip' => 'required|string',
         'latitude' => 'required|string',
         'longitude' => 'required|string',
-        'country_code' => 'required|string',
+        'country_code' => 'required|alpha|size:2|country',
         'client_ips' => 'nullable|array',
         'is_from_trusted_proxy' => 'sometimes|boolean',
         'division_code' => 'nullable|string',
         'postal_code' => 'nullable|string',
-        'timezone' => 'nullable|string',
+        'timezone' => 'nullable|string|timezone',
         'city' => 'nullable|string',
     ];
 
