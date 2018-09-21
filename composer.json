@@ -58,13 +58,13 @@
         "rinvex/cacheable": "dev-develop",
         "rinvex/country": "dev-develop",
         "rinvex/support": "dev-develop",
-        "symfony/http-foundation": "^4.0.0",
+        "symfony/http-foundation": "^4.1.0",
         "torann/geoip": "^1.0.0",
         "ua-parser/uap-php": "^3.5.0",
         "watson/validating": "^3.1.0"
     },
     "require-dev": {
-        "codedungeon/phpunit-result-printer": "^0.19.0",
+        "codedungeon/phpunit-result-printer": "^0.20.0",
         "illuminate/container": "~5.7.0",
         "phpunit/phpunit": "^7.0.0"
     },
