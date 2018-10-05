@@ -30,6 +30,6 @@ class MigrateCommand extends Command
     public function handle(): void
     {
         $this->warn($this->description);
-        $this->call('migrate', ['--step' => true, '--path' => 'vendor/rinvex/statistics/database/migrations', '--force' => $this->option('force')]);
+        $this->call('migrate', ['--step' => true, '--path' => 'vendor/rinvex/laravel-statistics/database/migrations', '--force' => $this->option('force')]);
     }
 }

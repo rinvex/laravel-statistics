@@ -1,6 +1,7 @@
 {
-    "name": "rinvex/statistics",
+    "name": "rinvex/laravel-statistics",
     "description": "Rinvex Statistics is a lightweight, yet detailed package for tracking and recording user visits across your Laravel application. With only one simple query per request, important data is being stored, and later a cronjob crush numbers to extract meaningful stories from within the haystack.",
+    "type": "library",
     "keywords": [
         "user",
         "model",
@@ -22,9 +23,9 @@
     "homepage": "https://rinvex.com",
     "support": {
         "email": "help@rinvex.com",
-        "issues": "https://github.com/rinvex/statistics/issues",
-        "source": "https://github.com/rinvex/statistics",
-        "docs": "https://github.com/rinvex/statistics/blob/master/README.md"
+        "issues": "https://github.com/rinvex/laravel-statistics/issues",
+        "source": "https://github.com/rinvex/laravel-statistics",
+        "docs": "https://github.com/rinvex/laravel-statistics/blob/master/README.md"
     },
     "authors": [
         {
@@ -40,7 +41,7 @@
         },
         {
             "name": "The Generous Laravel Community",
-            "homepage": "https://github.com/rinvex/statistics/contributors"
+            "homepage": "https://github.com/rinvex/laravel-statistics/contributors"
         }
     ],
     "require": {
@@ -55,16 +56,16 @@
         "illuminate/routing": "~5.7.0",
         "illuminate/support": "~5.7.0",
         "jenssegers/agent": "^2.6.0",
-        "rinvex/cacheable": "dev-develop",
-        "rinvex/country": "dev-develop",
-        "rinvex/support": "dev-develop",
+        "rinvex/laravel-cacheable": "^1.0.0",
+        "rinvex/countries": "v5.0.0",
+        "rinvex/laravel-support": "v1.0.0",
         "symfony/http-foundation": "^4.1.0",
         "torann/geoip": "^1.0.0",
         "ua-parser/uap-php": "^3.5.0",
         "watson/validating": "^3.1.0"
     },
     "require-dev": {
-        "codedungeon/phpunit-result-printer": "^0.20.0",
+        "codedungeon/phpunit-result-printer": "^0.22.0",
         "illuminate/container": "~5.7.0",
         "phpunit/phpunit": "^7.0.0"
     },
@@ -81,15 +82,15 @@
             "Rinvex\\Statistics\\Tests\\": "tests"
         }
     },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
     "config": {
         "sort-packages": true,
         "preferred-install": "dist",
         "optimize-autoloader": true
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        },
         "laravel": {
             "providers": [
                 "Rinvex\\Statistics\\Providers\\StatisticsServiceProvider"
