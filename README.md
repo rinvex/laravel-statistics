@@ -10,19 +10,19 @@ With such a huge collected data, the `statistics_requests` database table will n
 
 The default implementation of **Rinvex Statistics** comes with zero configuration out-of-the-box, which means it just works once installed. But it's recommended to change the defaults and disable the "Statistics Crunching Lottery" from config file, and replace it with a [Scheduled Tasks](https://laravel.com/docs/master/scheduling) for even better performance if you've large number of visits. See [Usage](#usage) for details.
 
-[![Packagist](https://img.shields.io/packagist/v/rinvex/statistics.svg?label=Packagist&style=flat-square)](https://packagist.org/packages/rinvex/statistics)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rinvex/statistics.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/rinvex/statistics/)
-[![Code Climate](https://img.shields.io/codeclimate/github/rinvex/statistics.svg?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/rinvex/statistics)
-[![Travis](https://img.shields.io/travis/rinvex/statistics.svg?label=TravisCI&style=flat-square)](https://travis-ci.org/rinvex/statistics)
+[![Packagist](https://img.shields.io/packagist/v/rinvex/laravel-statistics.svg?label=Packagist&style=flat-square)](https://packagist.org/packages/rinvex/laravel-statistics)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rinvex/laravel-statistics.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/rinvex/laravel-statistics/)
+[![Code Climate](https://img.shields.io/codeclimate/github/rinvex/laravel-statistics.svg?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/rinvex/laravel-statistics)
+[![Travis](https://img.shields.io/travis/rinvex/laravel-statistics.svg?label=TravisCI&style=flat-square)](https://travis-ci.org/rinvex/laravel-statistics)
 [![StyleCI](https://styleci.io/repos/118045101/shield)](https://styleci.io/repos/118045101)
-[![License](https://img.shields.io/packagist/l/rinvex/statistics.svg?label=License&style=flat-square)](https://github.com/rinvex/statistics/blob/develop/LICENSE)
+[![License](https://img.shields.io/packagist/l/rinvex/laravel-statistics.svg?label=License&style=flat-square)](https://github.com/rinvex/laravel-statistics/blob/develop/LICENSE)
 
 
 ## Installation
 
 1. Install the package via composer:
     ```shell
-    composer require rinvex/statistics
+    composer require rinvex/laravel-statistics
     ```
 
 2. Execute migrations via the following command:
