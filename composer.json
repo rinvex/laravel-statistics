@@ -57,7 +57,7 @@
         "illuminate/support": "~5.7.0",
         "jenssegers/agent": "^2.6.0",
         "rinvex/laravel-cacheable": "^1.0.0",
-        "rinvex/countries": "v5.0.0",
+        "rinvex/countries": "^5.0.0",
         "rinvex/laravel-support": "v1.0.0",
         "symfony/http-foundation": "^4.1.0",
         "torann/geoip": "^1.0.0",
