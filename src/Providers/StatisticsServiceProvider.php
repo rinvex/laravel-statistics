@@ -14,6 +14,7 @@ use Rinvex\Statistics\Models\Device;
 use Rinvex\Statistics\Models\Request;
 use Rinvex\Statistics\Models\Platform;
 use Illuminate\Support\ServiceProvider;
+use Rinvex\Support\Traits\ConsoleTools;
 use Rinvex\Statistics\Console\Commands\MigrateCommand;
 use Rinvex\Statistics\Console\Commands\PublishCommand;
 use Rinvex\Statistics\Http\Middleware\TrackStatistics;
@@ -21,6 +22,8 @@ use Rinvex\Statistics\Console\Commands\RollbackCommand;
 
 class StatisticsServiceProvider extends ServiceProvider
 {
+    use ConsoleTools;
+
     /**
      * The commands to be registered.
      *
@@ -66,7 +69,7 @@ class StatisticsServiceProvider extends ServiceProvider
         $pathModel === Path::class || $this->app->alias('rinvex.statistics.path', Path::class);
 
         // Register console commands
-        ! $this->app->runningInConsole() || $this->registerCommands();
+        ! $this->app->runningInConsole() || $this->registersCommands();
     }
 
     /**
@@ -74,39 +77,11 @@ class StatisticsServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        // Load migrations
-        ! $this->app->runningInConsole() || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
-
         // Publish Resources
-        ! $this->app->runningInConsole() || $this->publishResources();
+        ! $this->app->runningInConsole() || $this->publishesConfig('rinvex/laravel-statistics');
+        ! $this->app->runningInConsole() || $this->publishesMigrations('rinvex/laravel-statistics');
 
         // Push middleware to web group
         $router->pushMiddlewareToGroup('web', TrackStatistics::class);
-    }
-
-    /**
-     * Publish resources.
-     *
-     * @return void
-     */
-    protected function publishResources(): void
-    {
-        $this->publishes([realpath(__DIR__.'/../../config/config.php') => config_path('rinvex.statistics.php')], 'rinvex-statistics-config');
-        $this->publishes([realpath(__DIR__.'/../../database/migrations') => database_path('migrations')], 'rinvex-statistics-migrations');
-    }
-
-    /**
-     * Register console commands.
-     *
-     * @return void
-     */
-    protected function registerCommands(): void
-    {
-        // Register artisan commands
-        foreach ($this->commands as $key => $value) {
-            $this->app->singleton($value, $key);
-        }
-
-        $this->commands(array_values($this->commands));
     }
 }

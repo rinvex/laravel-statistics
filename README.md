@@ -25,14 +25,14 @@ The default implementation of **Rinvex Statistics** comes with zero configuratio
     composer require rinvex/laravel-statistics
     ```
 
-2. Execute migrations via the following command:
-    ```
-    php artisan rinvex:migrate:statistics
-    ```
-
-3. **Optional** if you want to change the configurations:
+2. Publish resources (migrations and config files):
     ```shell
     php artisan rinvex:publish:statistics
+    ```
+
+3. Execute migrations via the following command:
+    ```shell
+    php artisan rinvex:migrate:statistics
     ```
 
 4. Done!
