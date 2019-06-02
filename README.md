@@ -12,7 +12,6 @@ The default implementation of **Rinvex Statistics** comes with zero configuratio
 
 [![Packagist](https://img.shields.io/packagist/v/rinvex/laravel-statistics.svg?label=Packagist&style=flat-square)](https://packagist.org/packages/rinvex/laravel-statistics)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rinvex/laravel-statistics.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/rinvex/laravel-statistics/)
-[![Code Climate](https://img.shields.io/codeclimate/github/rinvex/laravel-statistics.svg?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/rinvex/laravel-statistics)
 [![Travis](https://img.shields.io/travis/rinvex/laravel-statistics.svg?label=TravisCI&style=flat-square)](https://travis-ci.org/rinvex/laravel-statistics)
 [![StyleCI](https://styleci.io/repos/118045101/shield)](https://styleci.io/repos/118045101)
 [![License](https://img.shields.io/packagist/l/rinvex/laravel-statistics.svg?label=License&style=flat-square)](https://github.com/rinvex/laravel-statistics/blob/develop/LICENSE)
@@ -25,14 +24,14 @@ The default implementation of **Rinvex Statistics** comes with zero configuratio
     composer require rinvex/laravel-statistics
     ```
 
-2. Execute migrations via the following command:
-    ```
-    php artisan rinvex:migrate:statistics
-    ```
-
-3. **Optional** if you want to change the configurations:
+2. Publish resources (migrations and config files):
     ```shell
     php artisan rinvex:publish:statistics
+    ```
+
+3. Execute migrations via the following command:
+    ```shell
+    php artisan rinvex:migrate:statistics
     ```
 
 4. Done!
