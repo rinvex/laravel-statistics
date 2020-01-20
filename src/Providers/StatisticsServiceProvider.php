@@ -80,6 +80,7 @@ class StatisticsServiceProvider extends ServiceProvider
         // Publish Resources
         ! $this->app->runningInConsole() || $this->publishesConfig('rinvex/laravel-statistics');
         ! $this->app->runningInConsole() || $this->publishesMigrations('rinvex/laravel-statistics');
+        ! $this->app['config']['rinvex.statistics.autoload_migrations'] || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 
         // Push middleware to web group
         $router->pushMiddlewareToGroup('web', TrackStatistics::class);
