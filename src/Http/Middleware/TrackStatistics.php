@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rinvex\Statistics\Http\Middleware;
 
 use Closure;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Rinvex\Statistics\Jobs\CrunchStatistics;
 use Rinvex\Statistics\Jobs\CleanStatisticsRequests;
@@ -47,7 +48,7 @@ class TrackStatistics
             'method' => $request->getMethod(),
             'server' => $request->server() ?: null,
             'input' => $request->input() ?: null,
-            'created_at' => now(),
+            'created_at' => Carbon::now(),
         ])->save();
 
         // Here we will see if this request hits the statistics crunching lottery by hitting
