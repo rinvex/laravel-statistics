@@ -21,6 +21,7 @@ class CrunchStatistics implements ShouldQueue
     use InteractsWithQueue;
     use Queueable;
     use SerializesModels;
+
     /**
      * Execute the job.
      *
