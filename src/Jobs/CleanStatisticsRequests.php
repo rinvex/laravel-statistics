@@ -13,8 +13,10 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class CleanStatisticsRequests implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
     /**
      * Execute the job.
      *

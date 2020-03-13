@@ -17,8 +17,10 @@ use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 class CrunchStatistics implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
     /**
      * Execute the job.
      *
