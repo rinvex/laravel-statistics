@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rinvex\Statistics\Jobs;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -12,8 +13,10 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class CleanStatisticsRequests implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
     /**
      * Execute the job.
      *
@@ -21,6 +24,6 @@ class CleanStatisticsRequests implements ShouldQueue
      */
     public function handle(): void
     {
-        ! config('rinvex.statistics.lifetime') || app('rinvex.statistics.request')->where('created_at', '<=', now()->subDays(config('rinvex.statistics.lifetime')))->delete();
+        ! config('rinvex.statistics.lifetime') || app('rinvex.statistics.request')->where('created_at', '<=', Carbon::now()->subDays(config('rinvex.statistics.lifetime')))->delete();
     }
 }

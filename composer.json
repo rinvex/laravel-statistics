@@ -61,8 +61,7 @@
         "rinvex/laravel-support": "^3.0.0",
         "symfony/http-foundation": "^4.3.0",
         "torann/geoip": "^1.0.0",
-        "ua-parser/uap-php": "^3.8.0",
-        "watson/validating": "^3.3.0"
+        "ua-parser/uap-php": "^3.8.0"
     },
     "require-dev": {
         "codedungeon/phpunit-result-printer": "^0.26.0",
