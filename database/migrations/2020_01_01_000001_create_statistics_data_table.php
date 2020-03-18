@@ -17,10 +17,10 @@ class CreateStatisticsDataTable extends Migration
     {
         Schema::create(config('rinvex.statistics.tables.data'), function (Blueprint $table) {
             // Columns
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('session_id');
             $table->nullableMorphs('user');
-            $table->integer('status_code');
+            $table->bigInteger('status_code');
             $table->text('uri');
             $table->string('method');
             $table->{$this->jsonable()}('server');

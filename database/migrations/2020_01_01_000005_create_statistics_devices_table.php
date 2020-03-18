@@ -17,11 +17,11 @@ class CreateStatisticsDevicesTable extends Migration
     {
         Schema::create(config('rinvex.statistics.tables.devices'), function (Blueprint $table) {
             // Columns
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('family');
             $table->string('model')->nullable();
             $table->string('brand')->nullable();
-            $table->integer('count')->unsigned()->default(0);
+            $table->bigInteger('count')->unsigned()->default(0);
         });
     }
 
