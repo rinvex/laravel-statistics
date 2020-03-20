@@ -17,12 +17,12 @@ class CreateStatisticsAgentsTable extends Migration
     {
         Schema::create(config('rinvex.statistics.tables.agents'), function (Blueprint $table) {
             // Columns
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('kind');
             $table->string('family');
             $table->string('version')->nullable();
-            $table->integer('count')->unsigned()->default(0);
+            $table->bigInteger('count')->unsigned()->default(0);
         });
     }
 

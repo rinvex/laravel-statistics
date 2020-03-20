@@ -13,7 +13,7 @@ class RollbackCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'rinvex:rollback:statistics {--force : Force the operation to run when in production.}';
+    protected $signature = 'rinvex:rollback:statistics {--f|force : Force the operation to run when in production.}';
 
     /**
      * The console command description.
@@ -31,7 +31,11 @@ class RollbackCommand extends Command
     {
         $this->alert($this->description);
 
-        if (file_exists($path = 'database/migrations/rinvex/laravel-statistics')) {
+        $path = config('rinvex.statistics.autoload_migrations') ?
+            'vendor/rinvex/laravel-statistics/database/migrations' :
+            'database/migrations/rinvex/laravel-statistics';
+
+        if (file_exists($path)) {
             $this->call('migrate:reset', [
                 '--path' => $path,
                 '--force' => $this->option('force'),
