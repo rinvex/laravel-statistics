@@ -17,6 +17,7 @@ class CleanStatisticsRequests implements ShouldQueue
     use InteractsWithQueue;
     use Queueable;
     use SerializesModels;
+
     /**
      * Execute the job.
      *
