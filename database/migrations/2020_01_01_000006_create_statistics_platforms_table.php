@@ -17,10 +17,10 @@ class CreateStatisticsPlatformsTable extends Migration
     {
         Schema::create(config('rinvex.statistics.tables.platforms'), function (Blueprint $table) {
             // Columns
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('family');
             $table->string('version')->nullable();
-            $table->bigInteger('count')->unsigned()->default(0);
+            $table->integer('count')->unsigned()->default(0);
         });
     }
 

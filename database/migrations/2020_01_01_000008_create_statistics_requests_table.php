@@ -17,16 +17,16 @@ class CreateStatisticsRequestsTable extends Migration
     {
         Schema::create(config('rinvex.statistics.tables.requests'), function (Blueprint $table) {
             // Columns
-            $table->bigIncrements('id');
-            $table->bigInteger('route_id')->unsigned();
-            $table->bigInteger('agent_id')->unsigned();
-            $table->bigInteger('device_id')->unsigned();
-            $table->bigInteger('platform_id')->unsigned();
-            $table->bigInteger('path_id')->unsigned();
-            $table->bigInteger('geoip_id')->unsigned();
+            $table->increments('id');
+            $table->integer('route_id')->unsigned();
+            $table->integer('agent_id')->unsigned();
+            $table->integer('device_id')->unsigned();
+            $table->integer('platform_id')->unsigned();
+            $table->integer('path_id')->unsigned();
+            $table->integer('geoip_id')->unsigned();
             $table->nullableMorphs('user');
             $table->string('session_id');
-            $table->bigInteger('status_code');
+            $table->integer('status_code');
             $table->string('protocol_version')->nullable();
             $table->text('referer')->nullable();
             $table->string('language');
