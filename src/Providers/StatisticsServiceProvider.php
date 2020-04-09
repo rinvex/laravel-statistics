@@ -69,7 +69,7 @@ class StatisticsServiceProvider extends ServiceProvider
         $pathModel === Path::class || $this->app->alias('rinvex.statistics.path', Path::class);
 
         // Register console commands
-        ! $this->app->runningInConsole() || $this->registerCommands();
+        $this->registerCommands();
     }
 
     /**
