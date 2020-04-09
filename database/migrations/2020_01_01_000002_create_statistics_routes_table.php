@@ -17,13 +17,13 @@ class CreateStatisticsRoutesTable extends Migration
     {
         Schema::create(config('rinvex.statistics.tables.routes'), function (Blueprint $table) {
             // Columns
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('name');
             $table->string('path');
             $table->string('action');
             $table->string('middleware')->nullable();
             $table->{$this->jsonable()}('parameters')->nullable();
-            $table->bigInteger('count')->unsigned()->default(0);
+            $table->integer('count')->unsigned()->default(0);
 
             // Indexes
             $table->unique('name');

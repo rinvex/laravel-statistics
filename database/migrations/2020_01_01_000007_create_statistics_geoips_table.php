@@ -17,7 +17,7 @@ class CreateStatisticsGeoipsTable extends Migration
     {
         Schema::create(config('rinvex.statistics.tables.geoips'), function (Blueprint $table) {
             // Columns
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('client_ip');
             $table->string('latitude');
             $table->string('longitude');
@@ -28,7 +28,7 @@ class CreateStatisticsGeoipsTable extends Migration
             $table->string('postal_code')->nullable();
             $table->string('timezone')->nullable();
             $table->string('city')->nullable();
-            $table->bigInteger('count')->unsigned()->default(0);
+            $table->integer('count')->unsigned()->default(0);
 
             // Indexes
             $table->unique(['client_ip', 'latitude', 'longitude']);
