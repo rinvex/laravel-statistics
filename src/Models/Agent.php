@@ -53,10 +53,10 @@ class Agent extends Model
      * @var array
      */
     protected $rules = [
-        'name' => 'required|string',
-        'kind' => 'required|string',
-        'family' => 'required|string',
-        'version' => 'nullable|string',
+        'name' => 'required|string|strip_tags|max:150',
+        'kind' => 'required|string|strip_tags|max:150',
+        'family' => 'required|string|strip_tags|max:150',
+        'version' => 'nullable|string|strip_tags|max:150',
     ];
 
     /**
