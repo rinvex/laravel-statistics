@@ -153,7 +153,7 @@ class Request extends Model
      */
     public function route(): BelongsTo
     {
-        return $this->belongsTo(config('rinvex.statistics.models.route'), 'route_id', 'id');
+        return $this->belongsTo(config('rinvex.statistics.models.route'), 'route_id', 'id', 'route');
     }
 
     /**
@@ -163,7 +163,7 @@ class Request extends Model
      */
     public function path(): BelongsTo
     {
-        return $this->belongsTo(config('rinvex.statistics.models.path'), 'path_id', 'id');
+        return $this->belongsTo(config('rinvex.statistics.models.path'), 'path_id', 'id', 'path');
     }
 
     /**
@@ -173,7 +173,7 @@ class Request extends Model
      */
     public function agent(): BelongsTo
     {
-        return $this->belongsTo(config('rinvex.statistics.models.agent'), 'agent_id', 'id');
+        return $this->belongsTo(config('rinvex.statistics.models.agent'), 'agent_id', 'id', 'agent');
     }
 
     /**
@@ -183,7 +183,7 @@ class Request extends Model
      */
     public function geoip(): BelongsTo
     {
-        return $this->belongsTo(config('rinvex.statistics.models.geoip'), 'geoip_id', 'id');
+        return $this->belongsTo(config('rinvex.statistics.models.geoip'), 'geoip_id', 'id', 'geoip');
     }
 
     /**
@@ -193,7 +193,7 @@ class Request extends Model
      */
     public function device(): BelongsTo
     {
-        return $this->belongsTo(config('rinvex.statistics.models.device'), 'device_id', 'id');
+        return $this->belongsTo(config('rinvex.statistics.models.device'), 'device_id', 'id', 'device');
     }
 
     /**
@@ -203,7 +203,7 @@ class Request extends Model
      */
     public function platform(): BelongsTo
     {
-        return $this->belongsTo(config('rinvex.statistics.models.platform'), 'platform_id', 'id');
+        return $this->belongsTo(config('rinvex.statistics.models.platform'), 'platform_id', 'id', 'platform');
     }
 
     /**
