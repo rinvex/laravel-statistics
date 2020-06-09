@@ -92,7 +92,7 @@ class Request extends Model
         'path_id' => 'required|integer',
         'geoip_id' => 'required|integer',
         'user_id' => 'nullable|integer',
-        'user_type' => 'nullable|string',
+        'user_type' => 'nullable|string|strip_tags|max:150',
         'session_id' => 'required|string',
         'status_code' => 'required|integer',
         'protocol_version' => 'nullable|string',

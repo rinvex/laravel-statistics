@@ -64,7 +64,7 @@ class Datum extends Model
     protected $rules = [
         'session_id' => 'required|string',
         'user_id' => 'nullable|integer',
-        'user_type' => 'nullable|string',
+        'user_type' => 'nullable|string|strip_tags|max:150',
         'status_code' => 'required|integer',
         'uri' => 'required|string',
         'method' => 'required|string',
