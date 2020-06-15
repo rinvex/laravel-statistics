@@ -56,7 +56,6 @@
         "illuminate/routing": "^7.0.0",
         "illuminate/support": "^7.0.0",
         "jenssegers/agent": "^2.6.0",
-        "rinvex/laravel-cacheable": "^4.0.0",
         "rinvex/countries": "^7.0.0",
         "rinvex/laravel-support": "^4.0.0",
         "symfony/http-foundation": "^5.0.0",
