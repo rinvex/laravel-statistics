@@ -71,7 +71,7 @@ class Geoip extends Model
         'is_from_trusted_proxy' => 'sometimes|boolean',
         'division_code' => 'nullable|string',
         'postal_code' => 'nullable|string',
-        'timezone' => 'nullable|string|max:150|timezone',
+        'timezone' => 'nullable|string|size:5|timeoffset',
         'city' => 'nullable|string',
     ];
 
