@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Rinvex\Statistics\Jobs\CrunchStatistics;
 use Rinvex\Statistics\Jobs\CleanStatisticsRequests;
+use Illuminate\Support\Facades\Session;
 
 class TrackStatistics
 {
@@ -40,7 +41,7 @@ class TrackStatistics
         $currentUser = $request->user();
 
         app('rinvex.statistics.datum')->fill([
-            'session_id' => $request->session()->getId(),
+            'session_id' => Session::getId(),
             'user_id' => optional($currentUser)->getKey(),
             'user_type' => optional($currentUser)->getMorphClass(),
             'status_code' => $response->getStatusCode(),
