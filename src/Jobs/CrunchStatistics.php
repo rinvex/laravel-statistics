@@ -51,7 +51,7 @@ class CrunchStatistics implements ShouldQueue
                 });
 
                 $route = app('rinvex.statistics.route')->firstOrCreate([
-                    'name' => $laravelRoute->getName(),
+                    'name' => $laravelRoute->getName() ?: $laravelRoute->uri(),
                 ], [
                     'path' => $laravelRoute->uri(),
                     'action' => $laravelRoute->getActionName(),
