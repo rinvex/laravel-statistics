@@ -85,6 +85,6 @@ return [
         'pin',
         '_csrf',
         'card_number',
-        'card_owner'
-    ]
+        'card_owner',
+    ],
 ];
