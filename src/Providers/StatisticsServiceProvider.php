@@ -44,29 +44,16 @@ class StatisticsServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'rinvex.statistics');
 
         // Bind eloquent models to IoC container
-        $this->app->singleton('rinvex.statistics.datum', $datumModel = $this->app['config']['rinvex.statistics.models.datum']);
-        $datumModel === Datum::class || $this->app->alias('rinvex.statistics.datum', Datum::class);
-
-        $this->app->singleton('rinvex.statistics.request', $requestModel = $this->app['config']['rinvex.statistics.models.request']);
-        $requestModel === Request::class || $this->app->alias('rinvex.statistics.request', Request::class);
-
-        $this->app->singleton('rinvex.statistics.agent', $agentModel = $this->app['config']['rinvex.statistics.models.agent']);
-        $agentModel === Agent::class || $this->app->alias('rinvex.statistics.agent', Agent::class);
-
-        $this->app->singleton('rinvex.statistics.geoip', $geoipModel = $this->app['config']['rinvex.statistics.models.geoip']);
-        $geoipModel === Geoip::class || $this->app->alias('rinvex.statistics.geoip', Geoip::class);
-
-        $this->app->singleton('rinvex.statistics.route', $routeModel = $this->app['config']['rinvex.statistics.models.route']);
-        $routeModel === Route::class || $this->app->alias('rinvex.statistics.route', Route::class);
-
-        $this->app->singleton('rinvex.statistics.device', $deviceModel = $this->app['config']['rinvex.statistics.models.device']);
-        $deviceModel === Device::class || $this->app->alias('rinvex.statistics.device', Device::class);
-
-        $this->app->singleton('rinvex.statistics.platform', $platformModel = $this->app['config']['rinvex.statistics.models.platform']);
-        $platformModel === Platform::class || $this->app->alias('rinvex.statistics.platform', Platform::class);
-
-        $this->app->singleton('rinvex.statistics.path', $pathModel = $this->app['config']['rinvex.statistics.models.path']);
-        $pathModel === Path::class || $this->app->alias('rinvex.statistics.path', Path::class);
+        $this->registerModels([
+            'rinvex.statistics.datum' => Datum::class,
+            'rinvex.statistics.request' => Request::class,
+            'rinvex.statistics.agent' => Agent::class,
+            'rinvex.statistics.geoip' => Geoip::class,
+            'rinvex.statistics.route' => Route::class,
+            'rinvex.statistics.device' => Device::class,
+            'rinvex.statistics.platform' => Platform::class,
+            'rinvex.statistics.path' => Path::class,
+        ]);
 
         // Register console commands
         $this->registerCommands($this->commands);
