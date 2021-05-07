@@ -22,7 +22,7 @@ class CreateStatisticsPathsTable extends Migration
             $table->string('locale');
             $table->string('path');
             $table->string('method');
-            $table->{$this->jsonable()}('parameters')->nullable();
+            $table->json('parameters')->nullable();
             $table->integer('count')->unsigned()->default(0);
 
             // Indexes
@@ -38,19 +38,5 @@ class CreateStatisticsPathsTable extends Migration
     public function down(): void
     {
         Schema::dropIfExists(config('rinvex.statistics.tables.paths'));
-    }
-
-    /**
-     * Get jsonable column data type.
-     *
-     * @return string
-     */
-    protected function jsonable(): string
-    {
-        $driverName = DB::connection()->getPdo()->getAttribute(PDO::ATTR_DRIVER_NAME);
-        $dbVersion = DB::connection()->getPdo()->getAttribute(PDO::ATTR_SERVER_VERSION);
-        $isOldVersion = version_compare($dbVersion, '5.7.8', 'lt');
-
-        return $driverName === 'mysql' && $isOldVersion ? 'text' : 'json';
     }
 }
