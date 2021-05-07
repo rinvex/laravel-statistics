@@ -62,18 +62,7 @@ class Geoip extends Model
      *
      * @var array
      */
-    protected $rules = [
-        'client_ip' => 'required|string',
-        'latitude' => 'required|string',
-        'longitude' => 'required|string',
-        'country_code' => 'required|alpha|size:2|country',
-        'client_ips' => 'nullable|array',
-        'is_from_trusted_proxy' => 'sometimes|boolean',
-        'division_code' => 'nullable|string',
-        'postal_code' => 'nullable|string',
-        'timezone' => 'nullable|string|max:64|timezone',
-        'city' => 'nullable|string',
-    ];
+    protected $rules = [];
 
     /**
      * Whether the model should throw a
@@ -93,6 +82,18 @@ class Geoip extends Model
         parent::__construct($attributes);
 
         $this->setTable(config('rinvex.statistics.tables.geoips'));
+        $this->setRules([
+            'client_ip' => 'required|string',
+            'latitude' => 'required|string',
+            'longitude' => 'required|string',
+            'country_code' => 'required|alpha|size:2|country',
+            'client_ips' => 'nullable|array',
+            'is_from_trusted_proxy' => 'sometimes|boolean',
+            'division_code' => 'nullable|string',
+            'postal_code' => 'nullable|string',
+            'timezone' => 'nullable|string|max:64|timezone',
+            'city' => 'nullable|string',
+        ]);
     }
 
     /**

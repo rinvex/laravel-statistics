@@ -61,17 +61,7 @@ class Datum extends Model
      *
      * @var array
      */
-    protected $rules = [
-        'session_id' => 'required|string',
-        'user_id' => 'nullable|integer',
-        'user_type' => 'nullable|string|strip_tags|max:150',
-        'status_code' => 'required|integer',
-        'uri' => 'required|string',
-        'method' => 'required|string',
-        'server' => 'required|array',
-        'input' => 'nullable|array',
-        'created_at' => 'required|date',
-    ];
+    protected $rules = [];
 
     /**
      * Whether the model should throw a
@@ -91,6 +81,17 @@ class Datum extends Model
         parent::__construct($attributes);
 
         $this->setTable(config('rinvex.statistics.tables.data'));
+        $this->setRules([
+            'session_id' => 'required|string',
+            'user_id' => 'nullable|integer',
+            'user_type' => 'nullable|string|strip_tags|max:150',
+            'status_code' => 'required|integer',
+            'uri' => 'required|string',
+            'method' => 'required|string',
+            'server' => 'required|array',
+            'input' => 'nullable|array',
+            'created_at' => 'required|date',
+        ]);
     }
 
     /**

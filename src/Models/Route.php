@@ -52,13 +52,7 @@ class Route extends Model
      *
      * @var array
      */
-    protected $rules = [
-        'name' => 'required|string',
-        'action' => 'required|string',
-        'middleware' => 'nullable|array',
-        'path' => 'required|string',
-        'parameters' => 'nullable|array',
-    ];
+    protected $rules = [];
 
     /**
      * Whether the model should throw a
@@ -78,6 +72,13 @@ class Route extends Model
         parent::__construct($attributes);
 
         $this->setTable(config('rinvex.statistics.tables.routes'));
+        $this->setRules([
+            'name' => 'required|string',
+            'action' => 'required|string',
+            'middleware' => 'nullable|array',
+            'path' => 'required|string',
+            'parameters' => 'nullable|array',
+        ]);
     }
 
     /**
