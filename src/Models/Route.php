@@ -69,8 +69,6 @@ class Route extends Model
      */
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
-
         $this->setTable(config('rinvex.statistics.tables.routes'));
         $this->setRules([
             'name' => 'required|string',
@@ -79,6 +77,8 @@ class Route extends Model
             'path' => 'required|string',
             'parameters' => 'nullable|array',
         ]);
+
+        parent::__construct($attributes);
     }
 
     /**

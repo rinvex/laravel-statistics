@@ -67,8 +67,6 @@ class Agent extends Model
      */
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
-
         $this->setTable(config('rinvex.statistics.tables.agents'));
         $this->setRules([
             'name' => 'required|string|strip_tags|max:150',
@@ -76,6 +74,8 @@ class Agent extends Model
             'family' => 'required|string|strip_tags|max:150',
             'version' => 'nullable|string|strip_tags|max:150',
         ]);
+
+        parent::__construct($attributes);
     }
 
     /**

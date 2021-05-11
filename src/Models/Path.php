@@ -69,8 +69,6 @@ class Path extends Model
      */
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
-
         $this->setTable(config('rinvex.statistics.tables.paths'));
         $this->setRules([
             'host' => 'required|string',
@@ -79,6 +77,8 @@ class Path extends Model
             'method' => 'required|string',
             'parameters' => 'nullable|array',
         ]);
+
+        parent::__construct($attributes);
     }
 
     /**

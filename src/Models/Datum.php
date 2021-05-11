@@ -78,8 +78,6 @@ class Datum extends Model
      */
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
-
         $this->setTable(config('rinvex.statistics.tables.data'));
         $this->setRules([
             'session_id' => 'required|string',
@@ -92,6 +90,8 @@ class Datum extends Model
             'input' => 'nullable|array',
             'created_at' => 'required|date',
         ]);
+
+        parent::__construct($attributes);
     }
 
     /**

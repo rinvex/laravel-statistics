@@ -79,8 +79,6 @@ class Geoip extends Model
      */
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
-
         $this->setTable(config('rinvex.statistics.tables.geoips'));
         $this->setRules([
             'client_ip' => 'required|string',
@@ -94,6 +92,8 @@ class Geoip extends Model
             'timezone' => 'nullable|string|max:64|timezone',
             'city' => 'nullable|string',
         ]);
+
+        parent::__construct($attributes);
     }
 
     /**

@@ -65,14 +65,14 @@ class Device extends Model
      */
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
-
         $this->setTable(config('rinvex.statistics.tables.devices'));
         $this->setRules([
             'family' => 'required|string',
             'model' => 'nullable|string',
             'brand' => 'nullable|string',
         ]);
+
+        parent::__construct($attributes);
     }
 
     /**

@@ -101,8 +101,6 @@ class Request extends Model
      */
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
-
         $this->setTable(config('rinvex.statistics.tables.requests'));
         $this->setRules([
             'route_id' => 'required|integer',
@@ -126,6 +124,8 @@ class Request extends Model
             'is_pjax' => 'sometimes|boolean',
             'created_at' => 'required|date',
         ]);
+
+        parent::__construct($attributes);
     }
 
     /**
