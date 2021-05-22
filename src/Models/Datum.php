@@ -79,7 +79,7 @@ class Datum extends Model
     public function __construct(array $attributes = [])
     {
         $this->setTable(config('rinvex.statistics.tables.data'));
-        $this->setRules([
+        $this->mergeRules([
             'session_id' => 'required|string',
             'user_id' => 'nullable|integer',
             'user_type' => 'nullable|string|strip_tags|max:150',

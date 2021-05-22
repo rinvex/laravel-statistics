@@ -68,7 +68,7 @@ class Agent extends Model
     public function __construct(array $attributes = [])
     {
         $this->setTable(config('rinvex.statistics.tables.agents'));
-        $this->setRules([
+        $this->mergeRules([
             'name' => 'required|string|strip_tags|max:150',
             'kind' => 'required|string|strip_tags|max:150',
             'family' => 'required|string|strip_tags|max:150',

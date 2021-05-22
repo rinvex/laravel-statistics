@@ -80,7 +80,7 @@ class Geoip extends Model
     public function __construct(array $attributes = [])
     {
         $this->setTable(config('rinvex.statistics.tables.geoips'));
-        $this->setRules([
+        $this->mergeRules([
             'client_ip' => 'required|string',
             'latitude' => 'required|string',
             'longitude' => 'required|string',

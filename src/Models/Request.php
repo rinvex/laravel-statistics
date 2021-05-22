@@ -102,7 +102,7 @@ class Request extends Model
     public function __construct(array $attributes = [])
     {
         $this->setTable(config('rinvex.statistics.tables.requests'));
-        $this->setRules([
+        $this->mergeRules([
             'route_id' => 'required|integer',
             'agent_id' => 'required|integer',
             'device_id' => 'required|integer',

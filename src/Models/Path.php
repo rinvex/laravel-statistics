@@ -70,7 +70,7 @@ class Path extends Model
     public function __construct(array $attributes = [])
     {
         $this->setTable(config('rinvex.statistics.tables.paths'));
-        $this->setRules([
+        $this->mergeRules([
             'host' => 'required|string',
             'locale' => 'required|string',
             'path' => 'required|string',

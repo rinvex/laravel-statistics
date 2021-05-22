@@ -64,7 +64,7 @@ class Platform extends Model
     public function __construct(array $attributes = [])
     {
         $this->setTable(config('rinvex.statistics.tables.platforms'));
-        $this->setRules([
+        $this->mergeRules([
             'family' => 'required|string',
             'version' => 'nullable|string',
         ]);

@@ -70,7 +70,7 @@ class Route extends Model
     public function __construct(array $attributes = [])
     {
         $this->setTable(config('rinvex.statistics.tables.routes'));
-        $this->setRules([
+        $this->mergeRules([
             'name' => 'required|string',
             'action' => 'required|string',
             'middleware' => 'nullable|array',

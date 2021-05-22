@@ -66,7 +66,7 @@ class Device extends Model
     public function __construct(array $attributes = [])
     {
         $this->setTable(config('rinvex.statistics.tables.devices'));
-        $this->setRules([
+        $this->mergeRules([
             'family' => 'required|string',
             'model' => 'nullable|string',
             'brand' => 'nullable|string',
