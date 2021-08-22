@@ -50,12 +50,7 @@ class Agent extends Model
      *
      * @var array
      */
-    protected $rules = [
-        'name' => 'required|string|strip_tags|max:150',
-        'kind' => 'required|string|strip_tags|max:150',
-        'family' => 'required|string|strip_tags|max:150',
-        'version' => 'nullable|string|strip_tags|max:150',
-    ];
+    protected $rules = [];
 
     /**
      * Whether the model should throw a
@@ -72,9 +67,15 @@ class Agent extends Model
      */
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
-
         $this->setTable(config('rinvex.statistics.tables.agents'));
+        $this->mergeRules([
+            'name' => 'required|string|strip_tags|max:150',
+            'kind' => 'required|string|strip_tags|max:150',
+            'family' => 'required|string|strip_tags|max:150',
+            'version' => 'nullable|string|strip_tags|max:150',
+        ]);
+
+        parent::__construct($attributes);
     }
 
     /**

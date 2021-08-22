@@ -22,7 +22,7 @@ class CreateStatisticsGeoipsTable extends Migration
             $table->string('latitude');
             $table->string('longitude');
             $table->char('country_code', 2);
-            $table->{$this->jsonable()}('client_ips')->nullable();
+            $table->json('client_ips')->nullable();
             $table->boolean('is_from_trusted_proxy')->default(0);
             $table->string('division_code')->nullable();
             $table->string('postal_code')->nullable();
@@ -43,19 +43,5 @@ class CreateStatisticsGeoipsTable extends Migration
     public function down(): void
     {
         Schema::dropIfExists(config('rinvex.statistics.tables.geoips'));
-    }
-
-    /**
-     * Get jsonable column data type.
-     *
-     * @return string
-     */
-    protected function jsonable(): string
-    {
-        $driverName = DB::connection()->getPdo()->getAttribute(PDO::ATTR_DRIVER_NAME);
-        $dbVersion = DB::connection()->getPdo()->getAttribute(PDO::ATTR_SERVER_VERSION);
-        $isOldVersion = version_compare($dbVersion, '5.7.8', 'lt');
-
-        return $driverName === 'mysql' && $isOldVersion ? 'text' : 'json';
     }
 }

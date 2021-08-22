@@ -61,4 +61,30 @@ return [
 
     'lifetime' => false,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Exclude input fields
+    |--------------------------------------------------------------------------
+    |
+    | Some fields must/should/might be hidden. And you can decide which area
+    | would be this is. For example sensitive informations, credit card info,
+    | passwords, pins, secret keys and others. Also some fields are may not
+    | important or may unecessary informations for statistics. For example csrf tokens,
+    | nested inputs and other fields. This option excludes given form inputs.
+    |
+    | This option prevents possible data leaks because form inputs storing as raw.
+    |
+    */
+
+    'exclude_input_fields' => [
+        'email',
+        'password',
+        'password_confirmation',
+        'secret',
+        'secret_key',
+        'pin',
+        '_csrf',
+        'card_number',
+        'card_owner',
+    ],
 ];

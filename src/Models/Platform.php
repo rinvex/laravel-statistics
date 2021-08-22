@@ -46,10 +46,7 @@ class Platform extends Model
      *
      * @var array
      */
-    protected $rules = [
-        'family' => 'required|string',
-        'version' => 'nullable|string',
-    ];
+    protected $rules = [];
 
     /**
      * Whether the model should throw a
@@ -66,9 +63,13 @@ class Platform extends Model
      */
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
-
         $this->setTable(config('rinvex.statistics.tables.platforms'));
+        $this->mergeRules([
+            'family' => 'required|string',
+            'version' => 'nullable|string',
+        ]);
+
+        parent::__construct($attributes);
     }
 
     /**

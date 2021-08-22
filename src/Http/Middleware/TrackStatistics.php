@@ -47,7 +47,7 @@ class TrackStatistics
             'uri' => $request->getUri(),
             'method' => $request->getMethod(),
             'server' => $request->server() ?: null,
-            'input' => $request->input() ?: null,
+            'input' => $request->input() ? $request->except(config('rinvex.statistics.exclude_input_fields')) : null,
             'created_at' => Carbon::now(),
         ])->save();
 

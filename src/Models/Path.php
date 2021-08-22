@@ -52,13 +52,7 @@ class Path extends Model
      *
      * @var array
      */
-    protected $rules = [
-        'host' => 'required|string',
-        'locale' => 'required|string',
-        'path' => 'required|string',
-        'method' => 'required|string',
-        'parameters' => 'nullable|array',
-    ];
+    protected $rules = [];
 
     /**
      * Whether the model should throw a
@@ -75,9 +69,16 @@ class Path extends Model
      */
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
-
         $this->setTable(config('rinvex.statistics.tables.paths'));
+        $this->mergeRules([
+            'host' => 'required|string',
+            'locale' => 'required|string',
+            'path' => 'required|string',
+            'method' => 'required|string',
+            'parameters' => 'nullable|array',
+        ]);
+
+        parent::__construct($attributes);
     }
 
     /**

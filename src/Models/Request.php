@@ -84,28 +84,7 @@ class Request extends Model
      *
      * @var array
      */
-    protected $rules = [
-        'route_id' => 'required|integer',
-        'agent_id' => 'required|integer',
-        'device_id' => 'required|integer',
-        'platform_id' => 'required|integer',
-        'path_id' => 'required|integer',
-        'geoip_id' => 'required|integer',
-        'user_id' => 'nullable|integer',
-        'user_type' => 'nullable|string|strip_tags|max:150',
-        'session_id' => 'required|string',
-        'status_code' => 'required|integer',
-        'protocol_version' => 'nullable|string',
-        'referer' => 'nullable|string',
-        'language' => 'required|string',
-        'is_no_cache' => 'sometimes|boolean',
-        'wants_json' => 'sometimes|boolean',
-        'is_secure' => 'sometimes|boolean',
-        'is_json' => 'sometimes|boolean',
-        'is_ajax' => 'sometimes|boolean',
-        'is_pjax' => 'sometimes|boolean',
-        'created_at' => 'required|date',
-    ];
+    protected $rules = [];
 
     /**
      * Whether the model should throw a
@@ -122,9 +101,31 @@ class Request extends Model
      */
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
-
         $this->setTable(config('rinvex.statistics.tables.requests'));
+        $this->mergeRules([
+            'route_id' => 'required|integer',
+            'agent_id' => 'required|integer',
+            'device_id' => 'required|integer',
+            'platform_id' => 'required|integer',
+            'path_id' => 'required|integer',
+            'geoip_id' => 'required|integer',
+            'user_id' => 'nullable|integer',
+            'user_type' => 'nullable|string|strip_tags|max:150',
+            'session_id' => 'required|string',
+            'status_code' => 'required|integer',
+            'protocol_version' => 'nullable|string',
+            'referer' => 'nullable|string',
+            'language' => 'required|string',
+            'is_no_cache' => 'sometimes|boolean',
+            'wants_json' => 'sometimes|boolean',
+            'is_secure' => 'sometimes|boolean',
+            'is_json' => 'sometimes|boolean',
+            'is_ajax' => 'sometimes|boolean',
+            'is_pjax' => 'sometimes|boolean',
+            'created_at' => 'required|date',
+        ]);
+
+        parent::__construct($attributes);
     }
 
     /**

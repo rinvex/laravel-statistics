@@ -51,7 +51,7 @@ class CrunchStatistics implements ShouldQueue
                 });
 
                 $route = app('rinvex.statistics.route')->firstOrCreate([
-                    'name' => $laravelRoute->getName(),
+                    'name' => $laravelRoute->getName() ?: $laravelRoute->uri(),
                 ], [
                     'path' => $laravelRoute->uri(),
                     'action' => $laravelRoute->getActionName(),
@@ -83,7 +83,7 @@ class CrunchStatistics implements ShouldQueue
                     'method' => $laravelRequest->getMethod(),
                     'locale' => $laravelRequest->route('locale') ?? app()->getLocale(),
                 ], [
-                    'accessarea' => $laravelRequest->get('accessarea'),
+                    'accessarea' => $laravelRequest->input('accessarea'),
                     'parameters' => $laravelRoute->parameters() ?: null,
                 ]);
 
@@ -112,7 +112,7 @@ class CrunchStatistics implements ShouldQueue
                     'user_type' => $item['user_type'],
                     'session_id' => $item['session_id'],
                     'status_code' => $item['status_code'],
-                    'referer' => $laravelRequest->header('referer') ?: $laravelRequest->get('utm_source'),
+                    'referer' => $laravelRequest->header('referer') ?: $laravelRequest->input('utm_source'),
                     'protocol_version' => $laravelRequest->getProtocolVersion(),
                     'language' => $laravelRequest->getPreferredLanguage(),
                     'is_no_cache' => $laravelRequest->isNoCache(),
