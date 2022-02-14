@@ -41,8 +41,8 @@ class TrackStatistics
 
         app('rinvex.statistics.datum')->fill([
             'session_id' => $request->session()->getId(),
-            'user_id' => optional($currentUser)->getKey(),
-            'user_type' => optional($currentUser)->getMorphClass(),
+            'user_id' => $currentUser?->getKey(),
+            'user_type' => $currentUser?->getMorphClass(),
             'status_code' => $response->getStatusCode(),
             'uri' => $request->getUri(),
             'method' => $request->getMethod(),
