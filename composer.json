@@ -46,25 +46,25 @@
     ],
     "require": {
         "php": "^8.0.0",
-        "geoip2/geoip2": "^2.11.0",
-        "illuminate/bus": "^8.0.0 || ^9.0.0",
-        "illuminate/console": "^8.0.0 || ^9.0.0",
-        "illuminate/contracts": "^8.0.0 || ^9.0.0",
-        "illuminate/database": "^8.0.0 || ^9.0.0",
-        "illuminate/http": "^8.0.0 || ^9.0.0",
-        "illuminate/queue": "^8.0.0 || ^9.0.0",
-        "illuminate/routing": "^8.0.0 || ^9.0.0",
-        "illuminate/support": "^8.0.0 || ^9.0.0",
+        "geoip2/geoip2": "^2.12.0",
+        "illuminate/bus": "^9.0.0 || ^10.0.0",
+        "illuminate/console": "^9.0.0 || ^10.0.0",
+        "illuminate/contracts": "^9.0.0 || ^10.0.0",
+        "illuminate/database": "^9.0.0 || ^10.0.0",
+        "illuminate/http": "^9.0.0 || ^10.0.0",
+        "illuminate/queue": "^9.0.0 || ^10.0.0",
+        "illuminate/routing": "^9.0.0 || ^10.0.0",
+        "illuminate/support": "^9.0.0 || ^10.0.0",
         "jenssegers/agent": "^2.6.0",
         "rinvex/countries": "^8.0.0",
         "rinvex/laravel-support": "^6.0.0",
-        "symfony/http-foundation": "^5.1.0",
+        "symfony/http-foundation": "^6.0.0",
         "torann/geoip": "^3.0.0",
-        "ua-parser/uap-php": "^3.8.0"
+        "ua-parser/uap-php": "^3.9.0"
     },
     "require-dev": {
         "codedungeon/phpunit-result-printer": "^0.31.0",
-        "illuminate/container": "^8.0.0 || ^9.0.0",
+        "illuminate/container": "^9.0.0 || ^10.0.0",
         "phpunit/phpunit": "^9.5.0"
     },
     "autoload": {
